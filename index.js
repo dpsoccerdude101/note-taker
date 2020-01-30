@@ -1,9 +1,12 @@
-(function(){
+
 
     var model = {
-        data: [{content: 'Add timestamp feature in lower right corner of note'},
-        {content: 'Add feature to delete a note'},
-        {content: 'Add feature to clear local storage'}],
+        createTimestamp(){
+            return new Date(Date.now()).toDateString()
+        },
+        data: [{content: 'Add timestamp feature in lower right corner of note', timestamp: new Date(Date.now()).toDateString()},
+        {content: 'Add feature to delete a note', timestamp: new Date(Date.now()).toDateString()},
+        {content: 'Add feature to clear local storage', timestamp: new Date(Date.now()).toDateString()}],
         init: function() {
             if (!localStorage.notes) {
                 localStorage.notes = JSON.stringify(this.data);
@@ -14,8 +17,16 @@
             data.push(obj);
             localStorage.notes = JSON.stringify(data);
         },
+        delete: function(obj){
+            let data = JSON.parse(localStorage.notes);
+            data.filter(d => timestamp !== obj.timestamp);
+            localStorage.notes = JSON.stringify(data);
+        },
         getAllNotes: function() {
             return JSON.parse(localStorage.notes);
+        },
+        removeAllNotes(){
+            localStorage.removeItem('notes')
         }
     };
 
@@ -23,13 +34,19 @@
     var controller = {
         addNewNote: function(noteStr) {
             model.add({
-                content: noteStr
+                content: noteStr,
+                timestamp: model.createTimestamp()
             });
             view.render();
         },
 
         getNotes: function() {
             return model.getAllNotes();
+        },
+        clear(e){
+            e.preventDefault()
+            model.removeAllNotes()
+            view.init()
         },
 
         init: function() {
@@ -54,7 +71,7 @@
         render: function(){
             let htmlStr = '';
             controller.getNotes().forEach(function(note){
-                htmlStr += `<li class="note">
+                htmlStr += `<li class="note" data-time="${note.timestamp}">
                         ${note.content}
                     </li>`;
             });
@@ -63,4 +80,3 @@
     };
 
     controller.init();
-})();
