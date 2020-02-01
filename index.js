@@ -1,31 +1,49 @@
 
-
+const app = (function(){
     var model = {
-        createTimestamp(){
+        createTimestamp: function(){
             return new Date(Date.now()).toDateString()
         },
-        data: [{content: 'Add timestamp feature in lower right corner of note', timestamp: new Date(Date.now()).toDateString()},
-        {content: 'Add feature to delete a note', timestamp: new Date(Date.now()).toDateString()},
-        {content: 'Add feature to clear local storage', timestamp: new Date(Date.now()).toDateString()}],
+        preliminaryData: [ // The "source of truth" will be localStorage, but this data just prepopulates for a new instance
+            {
+                content: 'Add timestamp feature in lower right corner of note', 
+                timestamp: new Date(Date.now()).toDateString()
+            },
+            {
+                content: 'Add feature to delete a note', 
+                timestamp: new Date(Date.now()).toDateString()
+            },
+            {
+                content: 'Add feature to clear local storage', 
+                timestamp: new Date(Date.now()).toDateString()
+            }
+        ],
         init: function() {
             if (!localStorage.notes) {
-                localStorage.notes = JSON.stringify(this.data);
+                localStorage.notes = JSON.stringify(this.preliminaryData);
             }
         },
         add: function(obj) {
-            let data = JSON.parse(localStorage.notes);
-            data.push(obj);
-            localStorage.notes = JSON.stringify(data);
+            if (localStorage.notes) {
+                let data = JSON.parse(localStorage.notes);
+                data.push(obj);
+                localStorage.notes = JSON.stringify(data);
+                return
+            }
+            localStorage.notes = JSON.stringify([obj])
         },
-        delete: function(obj){
+        delete: function(note){
             let data = JSON.parse(localStorage.notes);
-            data.filter(d => timestamp !== obj.timestamp);
-            localStorage.notes = JSON.stringify(data);
+            let filteredData = data.filter(d => note !== d.content);
+            localStorage.notes = JSON.stringify(filteredData);
         },
         getAllNotes: function() {
-            return JSON.parse(localStorage.notes);
+            if (localStorage.notes) {
+                return JSON.parse(localStorage.notes);
+            } 
+            return []
         },
-        removeAllNotes(){
+        removeAllNotes: function(){
             localStorage.removeItem('notes')
         }
     };
@@ -43,12 +61,15 @@
         getNotes: function() {
             return model.getAllNotes();
         },
-        clear(e){
-            e.preventDefault()
+        clear: function(e){
+            // e.preventDefault()
             model.removeAllNotes()
-            view.init()
+            view.render()
         },
-
+        remove: function(note) {
+            model.delete(note)
+            view.render()
+        },
         init: function() {
             model.init();
             view.init();
@@ -71,12 +92,23 @@
         render: function(){
             let htmlStr = '';
             controller.getNotes().forEach(function(note){
-                htmlStr += `<li class="note" data-time="${note.timestamp}">
-                        ${note.content}
+                htmlStr += `<li class="note">
+                        <span class="close" onclick="app.remove('${note.content}')">⨯</span> 
+                        ${note.content} 
+                        <span class="note-date">${note.timestamp}</span>
                     </li>`;
             });
             this.noteList.innerHTML = htmlStr ;
+            console.log(localStorage.notes ? JSON.parse(localStorage.notes) : 'notes empty')
         }
     };
 
     controller.init();
+
+    return {
+        model,
+        remove: controller.remove,
+        clear: controller.clear,
+        view
+    }
+})();
