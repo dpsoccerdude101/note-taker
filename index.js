@@ -1,5 +1,5 @@
 (function () {
-  var model = {
+  const model = {
     data: [
       { content: "Add timestamp feature in lower right corner of note" },
       { content: "Add feature to delete a note" },
@@ -26,6 +26,9 @@
     getAllNotes: function () {
       return JSON.parse(localStorage.notes);
     },
+    clearLocalStorage: function () {
+      localStorage.notes = JSON.stringify(this.data);
+    },
   };
 
   var controller = {
@@ -42,6 +45,11 @@
       view.render();
     },
 
+    deleteNotes: function () {
+      model.clearLocalStorage();
+      view.render();
+    },
+
     getNotes: function () {
       return model.getAllNotes();
     },
@@ -55,13 +63,17 @@
   var view = {
     init: function () {
       this.noteList = document.querySelector("#notes");
-      let newNoteForm = document.querySelector("#new-note-form");
-      let newNoteContent = document.querySelector("#new-note-content");
+      const newNoteForm = document.querySelector("#new-note-form");
+      const newNoteContent = newNoteForm.querySelector("#new-note-content");
+      const wipeButton = newNoteForm.querySelector("#wipe-button");
 
-      newNoteForm.addEventListener("submit", (e) => {
+      newNoteForm.addEventListener("submit", function (e) {
         e.preventDefault();
         controller.addNewNote(newNoteContent.value);
-        e.target.reset();
+      });
+
+      wipeButton.addEventListener("click", function () {
+        controller.deleteNotes();
       });
       view.render();
     },
