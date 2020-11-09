@@ -58,15 +58,11 @@
       let newNoteForm = document.querySelector("#new-note-form");
       let newNoteContent = document.querySelector("#new-note-content");
 
-      newNoteForm.addEventListener("submit", function (e) {
+      newNoteForm.addEventListener("submit", (e) => {
         e.preventDefault();
         controller.addNewNote(newNoteContent.value);
-        newNoteContent.value = "";
+        e.target.reset();
       });
-      /* this.noteList.addEventListener("click", function (e) {
-        if (e.target) e.preventDefault();
-        controller.deleteNote("garbage");
-      }); */
       view.render();
     },
 
@@ -81,14 +77,16 @@
     },
 
     render: function () {
-      let htmlStr = "";
-      controller.getNotes().forEach(function (note) {
-        htmlStr += `<li class="note" data-id="note-at-${note.timestamp}" value="${note.content}">
-                        ${note.content}
-                        <span class="note-date">${note.timestamp}</span>
-                        <button class="delete">Delete</button>
-                    </li>`;
+      let htmlStr = ``;
+      const notesArr = controller.getNotes();
+      const notesViewArr = notesArr.map(function (note) {
+        return `<li class="note" data-id="note-at-${note.timestamp}" value="${note.content}">
+        ${note.content}
+        <span class="note-date">${note.timestamp}</span>
+        <button class="delete">Delete</button>
+        </li>`;
       });
+      htmlStr = notesViewArr.join("");
       this.noteList.innerHTML = htmlStr;
       this.attachDeleteListeners();
     },
