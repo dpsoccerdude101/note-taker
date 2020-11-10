@@ -3,10 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <title>User Management MVC</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/animation.css" />
+    <link rel="stylesheet" href="/fonts/inter.css" />
+    <link rel="stylesheet" href="/css/style-update.css" />
+    <script defer src="animation.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/61811/web-animations-next-2.1.4.min.js"></script>
   </head>
   <body>
+    <header>
+      <h1>User Manager Dashboard MVC</h1>
+    </header>
     <main>
+      <form id="new-user-form" class="new-user-form"id="userIDForm">
+        <label for="new-user-content">Add A New User:</label>
+        <input
+          id="new-user-content"
+          class="new-user-content"
+          max="10"
+          type="number"
+        />
+        <button type="reset">Delete</button>
+        <button class="wipe" id="wipe-button" type="button">
+          Wipe Local Storage
+        </button>
+      </form>
+      <ul id="users" class="users"></ul>
+    </main>
+
+    <!--  <main>
       <h1>User Management MVC</h1>
       <form id="new-user-form" class="new-user-form">
         <label for="new-user-content">Add A New User:</label>
@@ -22,7 +48,7 @@
         </button>
       </form>
       <ul id="users" class="users"></ul>
-    </main>
+    </main> -->
     <script src="index.js"></script>
   </body>
 </html>

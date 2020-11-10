@@ -1,37 +1,20 @@
-
-*,
-*:before,
-*:after {box-sizing: border-box;}
 main {
-    max-width: 800px;
-    margin:0 auto;
+  color: blue;
 }
-.new-user-form {
-    margin-bottom: 15px;
+main h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Helvetica", "sans-serif";
 }
-.new-user-content {
-    width:100%;
-    display: block;
-    font-size: 1.3em;
+main section {
+  background-color: white;
 }
-
-.users {
-    list-style-type: none;
-    margin:0;
-    padding: 0;
+main section .selected {
+  background-color: crimson;
 }
-.user {
-    display: inline-block;
-    width: 250px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding:10px;
-    list-style-type: none;
-    background-color: #cde;
-}
-
-.user-date {
-    font-size:0.7em;
-    margin-bottom: 10px;
-    display: block;
+main .users article {
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 4px;
 }

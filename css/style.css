@@ -1,0 +1,15 @@
+main {
+  color: blue; }
+  main h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Helvetica", "sans-serif"; }
+  main section {
+    background-color: white; }
+    main section .selected {
+      background-color: crimson; }
+  main .users article {
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 4px; }

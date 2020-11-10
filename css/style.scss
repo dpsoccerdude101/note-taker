@@ -1,0 +1,24 @@
+main {
+    color: blue;
+    h2 {
+        font: {
+            size: 2rem;
+            weight: bold;
+            family: "Helvetica", "sans-serif";
+        }
+    }
+    section {
+        background-color: white;
+        .selected {
+            background-color: crimson;
+        }
+    }
+    .users {
+        article {
+            display: inline-block;
+            margin: 1rem;
+            padding: 1rem;
+            box-shadow: 0 0 4px
+        }
+    }
+}

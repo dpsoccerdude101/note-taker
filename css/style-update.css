@@ -1,0 +1,116 @@
+@font-face {
+  font-family: Bonaro;
+  src: url("../fonts/BonaroOutlineItalicDemoOutlineItalic.ttf");
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 80%;
+}
+
+header h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  font-family: Bonaro, Impact, serif;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0.25rem;
+}
+
+main {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  background-color: lightgrey;
+}
+
+#new-user-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#new-user-form > label,
+#new-user-form div,
+#new-user-form > input,
+#new-user-form > button {
+  margin: 0 3px;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 15rem 15rem 10rem 10rem;
+  grid-template-rows: 15rem 15rem 6rem;
+  justify-items: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 4rem;
+  margin: 1.5rem;
+}
+.namecontainer .name {
+  font-weight: 900;
+}
+.username {
+  font-style: italic;
+}
+.user .picture {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.pix {
+  width: 100%;
+  height: auto;
+}
+.namecontainer {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  align-self: end;
+}
+.company {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.company .name {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+.company .catchPhrase,
+.company .bs {
+  font-style: italic;
+  font-weight: 600;
+}
+.address {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  align-self: end;
+  font-weight: 600;
+}
+
+.line1,
+.line2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.line1 *,
+.line2 * {
+  padding: 0 0.1rem;
+}

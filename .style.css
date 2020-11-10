@@ -1,0 +1,37 @@
+/* 
+*,
+*:before,
+*:after {box-sizing: border-box;}
+main {
+    max-width: 800px;
+    margin:0 auto;
+}
+.new-user-form {
+    margin-bottom: 15px;
+}
+.new-user-content {
+    width:100%;
+    display: block;
+    font-size: 1.3em;
+}
+
+.users {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+}
+.user {
+    display: inline-block;
+    width: 250px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding:10px;
+    list-style-type: none;
+    background-color: #cde;
+}
+
+.user-date {
+    font-size:0.7em;
+    margin-bottom: 10px;
+    display: block;
+} */
