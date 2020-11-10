@@ -1,2 +1,2 @@
-# note-taker
-Notes app with MVC
+# User-Management
+User Management app with MVC
