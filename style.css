@@ -6,21 +6,21 @@ main {
     max-width: 800px;
     margin:0 auto;
 }
-.new-note-form {
+.new-user-form {
     margin-bottom: 15px;
 }
-.new-note-content {
+.new-user-content {
     width:100%;
     display: block;
     font-size: 1.3em;
 }
 
-.notes {
+.users {
     list-style-type: none;
     margin:0;
     padding: 0;
 }
-.note {
+.user {
     display: inline-block;
     width: 250px;
     margin-right: 20px;
@@ -30,7 +30,7 @@ main {
     background-color: #cde;
 }
 
-.note-date {
+.user-date {
     font-size:0.7em;
     margin-bottom: 10px;
     display: block;
